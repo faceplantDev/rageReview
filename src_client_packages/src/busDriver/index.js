@@ -10,7 +10,7 @@ let earnings = 0;
 
 let isWorkActive = false;
 
-mp.isPlyaerInsideBusDriverShape = false;
+mp.isPlayerInsideBusDriverShape = false;
 
 rentPedCreate(busDriverNums.ped.position, busDriverNums.ped.heading);
 
@@ -49,7 +49,7 @@ function renderMarker(id) {
 };
 
 mp.keys.bind(0x45, true, function() {
-    if(!mp.isPlyaerInsideBusDriverShape) return;
+    if(!mp.isPlayerInsideBusDriverShape) return;
 
     if(workTimeOut != null) return mp.gui.chat.push(`Нельзя так часто использовать это!`);
 
@@ -93,7 +93,7 @@ mp.events.add(`startjob`, () => {
     mp.gui.chat.push(`Вы начали работу водителем автобуса.`);
     mp.gui.chat.push(`Ваша задача ездить по точкам и развозить людей.`);
     mp.gui.chat.push(`Ваш текущий заработок отображается в низу экрана.`);
-    mp.gui.chat.push(`Деньги будут выплачены после заврешения работы.`);
+    mp.gui.chat.push(`Деньги будут выплачены после завершения работы.`);
     mp.gui.chat.push(`-----------------------------------`);
 
     renderMarker(1);
@@ -127,7 +127,7 @@ mp.events.add(`playerEnterColshape`, (colshape) => {
 
     if(busDriverNums.markers[id].type == `end`) {
         mp.gui.chat.push(`Поздравляем, вы завершили мрашрут!`);
-        mp.gui.chat.push(`Вы можете начать новый или завершить работу и забрать деньги.`);
+        mp.gui.chat.push(`Вы можете начать новый маршрут или завершить работу и забрать деньги.`);
         mp.colshapes.at(currentTarget[`shape`]).destroy();
         renderMarker(1);
     };
@@ -139,7 +139,7 @@ mp.events.add("playerEnterColshape", (shape) => {
             mp.game.ui.setTextComponentFormat("STRING");
             mp.game.ui.addTextComponentSubstringPlayerName("Для взаимодействия, нажмите ~INPUT_CONTEXT~");
             mp.game.ui.displayHelpTextFromStringLabel(0, false, true, -1);
-            mp.isPlyaerInsideBusDriverShape = true;
+            mp.isPlayerInsideBusDriverShape = true;
         };
     });
 });
@@ -147,7 +147,7 @@ mp.events.add("playerEnterColshape", (shape) => {
 mp.events.add("playerExitColshape", (shape) => {
     colshapes.forEach(colshape => {
         if(colshape == shape){
-            mp.isPlyaerInsideBusDriverShape = false;
+            mp.isPlayerInsideBusDriverShape = false;
         };
     });
 });

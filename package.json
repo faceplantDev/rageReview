@@ -1,0 +1,16 @@
+{
+  "name": "cloud-reborn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd ./src_client_packages && webpack && cd .. && ./ragemp-server.exe"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ragemp-c": "https://github.com/CocaColaBear/types-ragemp-c/tarball/master",
+    "@types/ragemp-s": "github:CocaColaBear/types-ragemp-s#master"
+  }
+}
